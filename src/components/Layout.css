@@ -341,63 +341,133 @@
 /* Responsive */
 
 /* Extra small mobile (320px - 480px) */
+/* Extra small mobile (320px - 480px) */
 @media (max-width: 480px) {
     .nav-container {
         padding: 12px 16px;
-        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+        /* Keep logo and actions on same line */
     }
 
     .nav-brand {
-        gap: 6px;
+        flex: 1;
+        /* Allow logo to take overlap space */
     }
 
-    .brand-icon {
-        font-size: 1.5rem;
-    }
-
-    .brand-text {
-        font-size: 1.2rem;
-    }
-
+    /* Move Nav Links to Bottom Fixed Bar */
     .nav-links {
-        order: 3;
-        width: 100%;
-        justify-content: space-around;
-        margin-top: 12px;
-        gap: 4px;
-        padding-top: 12px;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
         border-top: 1px solid var(--border-color);
+        padding: 8px 12px;
+        margin: 0;
+        display: flex;
+        justify-content: space-between;
+        gap: 0;
+        z-index: 1000;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+        padding-bottom: calc(8px + env(safe-area-inset-bottom));
+    }
+
+    [data-theme="dark"] .nav-links {
+        background: rgba(21, 21, 31, 0.95);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
     }
 
     .nav-link {
         flex-direction: column;
-        padding: 8px 12px;
+        padding: 6px 4px;
         gap: 4px;
-        font-size: 0.75rem;
+        font-size: 0.7rem;
+        border-radius: 8px;
+        background: transparent;
+        border: none;
         flex: 1;
-        text-align: center;
+        justify-content: center;
+        min-width: 50px;
+    }
+
+    .nav-link:hover,
+    .nav-link:active {
+        background: transparent;
+    }
+
+    .nav-link.active {
+        background: transparent;
+        box-shadow: none;
+        border: none;
+    }
+
+    .nav-link.active .nav-icon {
+        color: var(--accent-primary);
+        transform: translateY(-2px);
+    }
+
+    .nav-link.active .nav-label {
+        color: var(--accent-primary);
     }
 
     .nav-icon {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+        transition: transform 0.2s ease;
     }
 
     .nav-label {
         display: block;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+    /* Adjust Main Content to not be hidden by bottom bar */
+    .main-content {
+        padding-bottom: 80px;
+    }
+
+    /* Top Header Adjustments */
+    .brand-text {
+        display: none;
+        /* Hide text on very small screens if needed, or keep it */
+    }
+
+    .brand-icon {
+        font-size: 1.8rem;
+    }
+
+    .nav-actions {
+        gap: 8px;
     }
 
     .theme-toggle {
-        padding: 8px 12px;
+        padding: 8px;
     }
 
     .theme-label {
         display: none;
     }
 
+    .auth-link {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+
+    .user-menu-trigger {
+        padding: 6px 10px;
+    }
+
+    .user-email {
+        display: none;
+    }
+
+    /* Hide Footer on mobile as it takes space? or keep it with padding */
     .footer {
-        padding: 16px;
-        font-size: 0.85rem;
+        padding-bottom: 90px;
     }
 }
 

@@ -402,11 +402,35 @@
     }
 
     .calendar-wrapper {
-        padding: 20px;
+        padding: 12px;
+        margin-bottom: 24px;
+        width: 100%;
+        overflow-x: hidden;
     }
 
     .calendar-month {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
+    }
+
+    .calendar-grid {
+        gap: 2px;
+    }
+
+    .calendar-day-header {
+        font-size: 0.65rem;
+        padding: 4px 2px;
+        font-weight: 600;
+    }
+
+    .calendar-day {
+        min-height: 40px;
+        padding: 2px;
+        border-radius: 6px;
+    }
+
+    .day-number {
+        font-size: 0.75rem;
+        margin-bottom: 0;
     }
 
     .workout-item {
