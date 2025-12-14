@@ -378,40 +378,104 @@
 /* Responsive */
 @media (max-width: 768px) {
     .schedule-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+
+    .stat-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px;
+        gap: 8px;
+    }
+
+    .stat-icon {
+        font-size: 1.8rem;
+    }
+
+    .stat-number {
+        font-size: 1.5rem;
+    }
+
+    .stat-text {
+        font-size: 0.8rem;
+    }
+
+    .calendar-wrapper {
+        padding: 20px;
+    }
+
+    .calendar-month {
+        font-size: 1.25rem;
+    }
+
+    .workout-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .workout-icon {
+        align-self: flex-start;
+    }
+
+    .workout-actions {
+        width: 100%;
+        justify-content: flex-end;
+        margin-top: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .schedule-stats {
         grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        flex-direction: row;
+        text-align: left;
     }
 
     .calendar-grid {
         gap: 4px;
     }
 
-    .calendar-day {
-        min-height: 60px;
+    .calendar-day-header {
+        font-size: 0.7rem;
         padding: 4px;
+        font-weight: 500;
     }
 
-    .calendar-day-header {
-        font-size: 0.75rem;
-        padding: 8px 4px;
+    .calendar-day {
+        min-height: 50px;
+        padding: 2px;
+        border-radius: 8px;
     }
 
     .day-number {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        margin-bottom: 2px;
     }
 
     .indicator {
-        width: 18px;
-        height: 18px;
-        font-size: 0.6rem;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        font-size: 0;
+        /* Hide emoji text on very small screens */
     }
 
-    .workout-item {
-        flex-wrap: wrap;
+    /* Show a simple color dot instead of emoji for indicators on super small screens */
+    .indicator.completed {
+        background-color: var(--accent-primary);
+        opacity: 0.8;
     }
 
-    .workout-actions {
-        width: 100%;
-        justify-content: flex-end;
-        margin-top: 10px;
+    .modal-dialog {
+        width: 95%;
+        margin: 10px;
+    }
+
+    .type-selector {
+        grid-template-columns: repeat(2, 1fr);
     }
 }

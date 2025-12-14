@@ -319,8 +319,23 @@
     color: var(--error);
 }
 
-.user-menu-item.danger:hover {
-    background: rgba(239, 68, 68, 0.1);
+@media (max-width: 480px) {
+    .user-menu-dropdown {
+        position: fixed;
+        top: auto;
+        bottom: 80px;
+        /* Above the bottom navigation if present, or just some spacing */
+        left: 10px;
+        right: 10px;
+        width: auto;
+        min-width: 0;
+        z-index: 2000;
+        box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .user-menu-item.danger:hover {
+        background: rgba(239, 68, 68, 0.1);
+    }
 }
 
 /* Responsive */
