@@ -1,0 +1,523 @@
+.workout-page {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* API Section */
+.api-section {
+    margin-bottom: 32px;
+}
+
+.api-input-wrapper {
+    margin-top: 16px;
+    padding: 20px;
+    background: var(--bg-card);
+    border: var(--card-border);
+    border-radius: 12px;
+}
+
+.api-hint {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Calculator */
+.calculator-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 48px;
+}
+
+.calc-card {
+    background: var(--bg-card);
+    border: var(--card-border);
+    border-radius: 20px;
+    padding: 32px;
+}
+
+[data-theme="dark"] .calc-card {
+    box-shadow: var(--outline-glow);
+}
+
+.calc-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+.unit-toggle {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.unit-btn {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.unit-btn.active {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: rgba(0, 255, 136, 0.1);
+}
+
+[data-theme="dark"] .unit-btn.active {
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.goal-selector {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.goal-btn {
+    padding: 16px 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-secondary);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    color: var(--text-secondary);
+}
+
+.goal-btn span:first-child {
+    font-size: 1.8rem;
+}
+
+.goal-btn:hover,
+.goal-btn.active {
+    border-color: var(--accent-primary);
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .goal-btn.active {
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.25);
+}
+
+.level-selector {
+    display: flex;
+    gap: 12px;
+}
+
+.level-btn {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.level-btn.active {
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+[data-theme="dark"] .level-btn.active {
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+.generate-btn {
+    width: 100%;
+    margin-top: 24px;
+    padding: 16px;
+    font-size: 1.1rem;
+}
+
+.generate-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* BMI Result */
+.bmi-result {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.bmi-display {
+    background: var(--bg-card);
+    border: 3px solid;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+[data-theme="dark"] .bmi-display {
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.2);
+}
+
+.bmi-icon {
+    font-size: 3rem;
+}
+
+.bmi-value {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.bmi-category {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.bmi-scale {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+}
+
+.scale-segment {
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.scale-segment span:first-child {
+    font-weight: 600;
+}
+
+.scale-segment.underweight {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+    border: 1px solid #3b82f6;
+}
+
+.scale-segment.normal {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    border: 1px solid #10b981;
+}
+
+.scale-segment.overweight {
+    background: rgba(245, 158, 11, 0.2);
+    color: #f59e0b;
+    border: 1px solid #f59e0b;
+}
+
+.scale-segment.obese {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+/* Workout Results */
+.workout-results {
+    margin-top: 48px;
+}
+
+.plan-header {
+    margin-bottom: 40px;
+}
+
+.plan-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.plan-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+}
+
+.plan-actions {
+    flex-shrink: 0;
+}
+
+.save-workout-btn {
+    min-width: 150px;
+}
+
+.btn-success {
+    background: var(--success) !important;
+    border-color: var(--success) !important;
+    color: #000 !important;
+}
+
+[data-theme="dark"] .btn-success {
+    background: transparent !important;
+    border: 2px solid var(--success) !important;
+    color: var(--success) !important;
+}
+
+.spinner.small {
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+}
+
+.plan-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.plan-section {
+    margin-bottom: 48px;
+}
+
+.plan-section .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--text-primary);
+}
+
+/* Schedule Grid */
+.schedule-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 16px;
+}
+
+.schedule-day {
+    background: var(--bg-card);
+    border: var(--card-border);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .schedule-day:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+}
+
+.day-name {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.day-focus {
+    display: inline-block;
+    padding: 4px 10px;
+    background: var(--accent-primary);
+    color: #000;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+[data-theme="dark"] .day-focus {
+    background: transparent;
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.day-exercises {
+    list-style: none;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.day-exercises li {
+    padding: 4px 0;
+}
+
+/* Exercises Grid */
+.exercises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.exercise-card {
+    background: var(--bg-card);
+    border: var(--card-border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .exercise-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.2);
+}
+
+.exercise-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.exercise-details {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.exercise-details .detail {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.exercise-details strong {
+    color: var(--accent-primary);
+}
+
+.exercise-muscle {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Tips */
+.tips-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.tip-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: var(--bg-card);
+    border: var(--card-border);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+[data-theme="dark"] .tip-item {
+    box-shadow: var(--outline-glow);
+}
+
+.tip-number {
+    width: 32px;
+    height: 32px;
+    background: var(--accent-gradient);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+[data-theme="dark"] .tip-number {
+    background: transparent;
+    border: 2px solid var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.tip-item p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .calculator-section {
+        grid-template-columns: 1fr;
+    }
+
+    .schedule-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .goal-selector {
+        grid-template-columns: 1fr;
+    }
+
+    .level-selector {
+        flex-direction: column;
+    }
+
+    .schedule-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bmi-scale {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .plan-title {
+        font-size: 1.8rem;
+    }
+
+    .plan-header-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .plan-actions {
+        width: 100%;
+    }
+
+    .save-workout-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .schedule-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,324 @@
+/* Saved Workouts Page Styles */
+.saved-workouts-page .workouts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.saved-workout-card {
+    background: var(--bg-card);
+    border: var(--card-border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.saved-workout-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--accent-gradient);
+}
+
+[data-theme="dark"] .saved-workout-card::before {
+    background: var(--accent-primary);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+}
+
+.saved-workout-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px var(--shadow-color);
+}
+
+[data-theme="dark"] .saved-workout-card:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.15);
+}
+
+.saved-workout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.saved-workout-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 4px 0;
+}
+
+.saved-workout-date {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.saved-workout-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.saved-workout-btn {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.saved-workout-btn:hover {
+    background: var(--bg-secondary);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+}
+
+.saved-workout-btn.delete:hover {
+    border-color: var(--error);
+    color: var(--error);
+    background: rgba(239, 68, 68, 0.1);
+}
+
+.saved-workout-meta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.saved-workout-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.saved-workout-tag.goal-lose {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border: 1px solid #ef4444;
+}
+
+.saved-workout-tag.goal-maintain {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border: 1px solid #3b82f6;
+}
+
+.saved-workout-tag.goal-gain {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+    border: 1px solid #10b981;
+}
+
+.saved-workout-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.saved-workout-exercises {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.exercise-mini-tag {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--bg-card);
+    border: var(--card-border);
+    border-radius: 16px;
+    margin-top: 24px;
+}
+
+.empty-state-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    display: block;
+    opacity: 0.6;
+}
+
+.empty-state-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.empty-state-text {
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+.empty-state .btn {
+    display: inline-flex;
+}
+
+/* Not Logged In State */
+.auth-prompt {
+    text-align: center;
+    padding: 80px 20px;
+    background: var(--bg-card);
+    border: var(--card-border);
+    border-radius: 16px;
+    margin-top: 24px;
+}
+
+.auth-prompt-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.auth-prompt-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.auth-prompt-text {
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.auth-prompt-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Loading State */
+.loading-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.skeleton-card {
+    background: var(--bg-card);
+    border: var(--card-border);
+    border-radius: 16px;
+    padding: 24px;
+    animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeletonPulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.skeleton-line {
+    background: var(--bg-tertiary);
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+.skeleton-line.title {
+    height: 24px;
+    width: 70%;
+}
+
+.skeleton-line.date {
+    height: 14px;
+    width: 40%;
+}
+
+.skeleton-line.description {
+    height: 16px;
+    width: 100%;
+}
+
+.skeleton-line.description.short {
+    width: 80%;
+}
+
+.skeleton-tags {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.skeleton-tag {
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    height: 28px;
+    width: 80px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .saved-workouts-page .workouts-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .saved-workout-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .saved-workout-actions {
+        width: 100%;
+    }
+
+    .saved-workout-btn {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .auth-prompt-buttons {
+        flex-direction: column;
+    }
+
+    .auth-prompt-buttons .btn {
+        width: 100%;
+    }
+}
