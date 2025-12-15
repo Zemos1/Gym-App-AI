@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { dbHelpers, type WorkoutPlanRecord } from '../lib/supabase';
+import { FolderClock, Lock, Rocket, Sparkles, Dumbbell, Flame, Scale, Calendar, Trash2, BarChart, Target } from 'lucide-react';
 import './SavedWorkouts.css';
 
 const SavedWorkouts = () => {
@@ -54,11 +55,11 @@ const SavedWorkouts = () => {
         });
     };
 
-    const getGoalEmoji = (goal: string) => {
+    const getGoalIcon = (goal: string) => {
         switch (goal) {
-            case 'lose': return '🔥';
-            case 'gain': return '💪';
-            default: return '⚖️';
+            case 'lose': return <Flame size={14} />;
+            case 'gain': return <Dumbbell size={14} />;
+            default: return <Scale size={14} />;
         }
     };
 
@@ -75,12 +76,12 @@ const SavedWorkouts = () => {
         return (
             <div className="saved-workouts-page page-container">
                 <header className="page-header">
-                    <h1 className="page-title">📂 Saved Workouts</h1>
+                    <h1 className="page-title"><FolderClock size={32} /> Saved Workouts</h1>
                     <p className="page-subtitle">Your personalized workout history</p>
                 </header>
 
                 <div className="auth-prompt">
-                    <span className="auth-prompt-icon">🔐</span>
+                    <span className="auth-prompt-icon"><Lock size={48} /></span>
                     <h2 className="auth-prompt-title">Sign In to Save Workouts</h2>
                     <p className="auth-prompt-text">
                         Create an account to save your generated workout plans, track your progress,
@@ -88,10 +89,10 @@ const SavedWorkouts = () => {
                     </p>
                     <div className="auth-prompt-buttons">
                         <Link to="/login" className="btn btn-primary">
-                            🚀 Sign In
+                            <Rocket size={20} /> Sign In
                         </Link>
                         <Link to="/signup" className="btn btn-secondary">
-                            ✨ Create Account
+                            <Sparkles size={20} /> Create Account
                         </Link>
                     </div>
                 </div>
@@ -104,7 +105,7 @@ const SavedWorkouts = () => {
         return (
             <div className="saved-workouts-page page-container">
                 <header className="page-header">
-                    <h1 className="page-title">📂 Saved Workouts</h1>
+                    <h1 className="page-title"><FolderClock size={32} /> Saved Workouts</h1>
                     <p className="page-subtitle">Your personalized workout history</p>
                 </header>
 
@@ -131,12 +132,12 @@ const SavedWorkouts = () => {
         return (
             <div className="saved-workouts-page page-container">
                 <header className="page-header">
-                    <h1 className="page-title">📂 Saved Workouts</h1>
+                    <h1 className="page-title"><FolderClock size={32} /> Saved Workouts</h1>
                     <p className="page-subtitle">Your personalized workout history</p>
                 </header>
 
                 <div className="empty-state">
-                    <span className="empty-state-icon">🏋️</span>
+                    <span className="empty-state-icon"><Dumbbell size={48} /></span>
                     <h2 className="empty-state-title">No Saved Workouts Yet</h2>
                     <p className="empty-state-text">
                         Generate your first personalized workout plan to get started!
@@ -145,7 +146,7 @@ const SavedWorkouts = () => {
                         className="btn btn-primary"
                         onClick={() => navigate('/workout')}
                     >
-                        🚀 Generate Workout
+                        <Rocket size={20} /> Generate Workout
                     </button>
                 </div>
             </div>
@@ -155,7 +156,7 @@ const SavedWorkouts = () => {
     return (
         <div className="saved-workouts-page page-container">
             <header className="page-header">
-                <h1 className="page-title">📂 Saved Workouts</h1>
+                <h1 className="page-title"><FolderClock size={32} /> Saved Workouts</h1>
                 <p className="page-subtitle">
                     You have {workouts.length} saved workout plan{workouts.length !== 1 ? 's' : ''}
                 </p>
@@ -168,7 +169,7 @@ const SavedWorkouts = () => {
                             <div>
                                 <h3 className="saved-workout-title">{workout.title}</h3>
                                 <span className="saved-workout-date">
-                                    📅 {workout.created_at ? formatDate(workout.created_at) : 'Unknown date'}
+                                    <Calendar size={14} /> {workout.created_at ? formatDate(workout.created_at) : 'Unknown date'}
                                 </span>
                             </div>
                             <div className="saved-workout-actions">
@@ -177,20 +178,20 @@ const SavedWorkouts = () => {
                                     onClick={() => workout.id && handleDelete(workout.id)}
                                     disabled={deleting === workout.id}
                                 >
-                                    {deleting === workout.id ? '...' : '🗑️'}
+                                    {deleting === workout.id ? '...' : <Trash2 size={16} />}
                                 </button>
                             </div>
                         </div>
 
                         <div className="saved-workout-meta">
                             <span className={`saved-workout-tag goal-${workout.goal}`}>
-                                {getGoalEmoji(workout.goal)} {getGoalLabel(workout.goal)}
+                                {getGoalIcon(workout.goal)} {getGoalLabel(workout.goal)}
                             </span>
                             <span className="saved-workout-tag">
-                                📊 BMI: {workout.bmi_value} ({workout.bmi_category})
+                                <BarChart size={14} /> BMI: {workout.bmi_value} ({workout.bmi_category})
                             </span>
                             <span className="saved-workout-tag">
-                                🎯 {workout.fitness_level.charAt(0).toUpperCase() + workout.fitness_level.slice(1)}
+                                <Target size={14} /> {workout.fitness_level.charAt(0).toUpperCase() + workout.fitness_level.slice(1)}
                             </span>
                         </div>
 

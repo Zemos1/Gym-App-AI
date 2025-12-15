@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { dbHelpers } from '../lib/supabase';
+import { Dumbbell, TrendingDown, CheckCircle, AlertTriangle, AlertCircle, Scale, Rocket, Save, Lock, Calendar, Lightbulb, Flame, Activity } from 'lucide-react';
 import './Workout.css';
 
 interface WorkoutPlan {
@@ -64,10 +65,10 @@ const Workout = () => {
     };
 
     const getBMICategory = (bmi: number) => {
-        if (bmi < 18.5) return { category: 'Underweight', color: '#3b82f6', icon: '📉' };
-        if (bmi < 25) return { category: 'Normal', color: '#10b981', icon: '✅' };
-        if (bmi < 30) return { category: 'Overweight', color: '#f59e0b', icon: '⚠️' };
-        return { category: 'Obese', color: '#ef4444', icon: '🔴' };
+        if (bmi < 18.5) return { category: 'Underweight', color: '#3b82f6', icon: <TrendingDown size={20} /> };
+        if (bmi < 25) return { category: 'Normal', color: '#10b981', icon: <CheckCircle size={20} /> };
+        if (bmi < 30) return { category: 'Overweight', color: '#f59e0b', icon: <AlertTriangle size={20} /> };
+        return { category: 'Obese', color: '#ef4444', icon: <AlertCircle size={20} /> };
     };
 
     const generateWorkoutWithAI = async () => {
@@ -151,7 +152,7 @@ const Workout = () => {
     const generateLocalPlan = (bmi: number, category: string): WorkoutPlan => {
         const plans: Record<string, WorkoutPlan> = {
             lose: {
-                title: '🔥 Fat Burning Program',
+                title: 'Fat Burning Program',
                 description: `Designed for your BMI of ${bmi} (${category}), this high-intensity program focuses on burning calories while building lean muscle.`,
                 bmiCategory: category,
                 exercises: [
@@ -179,7 +180,7 @@ const Workout = () => {
                 ],
             },
             gain: {
-                title: '💪 Muscle Building Program',
+                title: 'Muscle Building Program',
                 description: `Tailored for your BMI of ${bmi} (${category}), this strength-focused program will help you build lean muscle mass.`,
                 bmiCategory: category,
                 exercises: [
@@ -207,7 +208,7 @@ const Workout = () => {
                 ],
             },
             maintain: {
-                title: '⚖️ Balanced Fitness Program',
+                title: 'Balanced Fitness Program',
                 description: `Perfect for your BMI of ${bmi} (${category}), this balanced program maintains your current fitness while preventing muscle loss.`,
                 bmiCategory: category,
                 exercises: [
@@ -276,7 +277,7 @@ const Workout = () => {
     return (
         <div className="workout-page page-container">
             <header className="page-header">
-                <h1 className="page-title">💪 AI Workout Generator</h1>
+                <h1 className="page-title"><Dumbbell size={32} /> AI Workout Generator</h1>
                 <p className="page-subtitle">Generate personalized workout plans based on your BMI and fitness goals</p>
             </header>
 
@@ -298,7 +299,7 @@ const Workout = () => {
                             onChange={e => setApiKey(e.target.value)}
                         />
                         <p className="api-hint">
-                            💡 Without an API key, workouts are generated locally. Add your key for AI-powered personalization.
+                            <Lightbulb size={16} /> Without an API key, workouts are generated locally. Add your key for AI-powered personalization.
                         </p>
                     </div>
                 )}
@@ -354,21 +355,21 @@ const Workout = () => {
                                 className={`goal-btn ${goal === 'lose' ? 'active' : ''}`}
                                 onClick={() => setGoal('lose')}
                             >
-                                <span>🔥</span>
+                                <Flame size={24} />
                                 <span>Lose Weight</span>
                             </button>
                             <button
                                 className={`goal-btn ${goal === 'maintain' ? 'active' : ''}`}
                                 onClick={() => setGoal('maintain')}
                             >
-                                <span>⚖️</span>
+                                <Scale size={24} />
                                 <span>Maintain</span>
                             </button>
                             <button
                                 className={`goal-btn ${goal === 'gain' ? 'active' : ''}`}
                                 onClick={() => setGoal('gain')}
                             >
-                                <span>💪</span>
+                                <Dumbbell size={24} />
                                 <span>Build Muscle</span>
                             </button>
                         </div>
@@ -410,7 +411,7 @@ const Workout = () => {
                             </>
                         ) : (
                             <>
-                                <span>🚀</span>
+                                <Rocket size={20} />
                                 Generate Workout Plan
                             </>
                         )}
@@ -469,19 +470,19 @@ const Workout = () => {
                                             </>
                                         ) : saved ? (
                                             <>
-                                                <span>✅</span>
+                                                <CheckCircle size={18} />
                                                 Saved!
                                             </>
                                         ) : (
                                             <>
-                                                <span>💾</span>
+                                                <Save size={18} />
                                                 Save Workout
                                             </>
                                         )}
                                     </button>
                                 ) : (
                                     <Link to="/login" className="btn btn-secondary">
-                                        <span>🔐</span>
+                                        <Lock size={18} />
                                         Sign in to Save
                                     </Link>
                                 )}
@@ -492,7 +493,7 @@ const Workout = () => {
 
                     {/* Weekly Schedule */}
                     <section className="plan-section">
-                        <h3 className="section-title">📅 Weekly Schedule</h3>
+                        <h3 className="section-title"><Calendar size={24} /> Weekly Schedule</h3>
                         <div className="schedule-grid">
                             {workoutPlan.weeklySchedule.map((day, index) => (
                                 <div key={index} className="schedule-day">
@@ -510,7 +511,7 @@ const Workout = () => {
 
                     {/* Exercises */}
                     <section className="plan-section">
-                        <h3 className="section-title">🏋️ Core Exercises</h3>
+                        <h3 className="section-title"><Activity size={24} /> Core Exercises</h3>
                         <div className="exercises-grid">
                             {workoutPlan.exercises.map((exercise, index) => (
                                 <div key={index} className="exercise-card">
@@ -534,7 +535,7 @@ const Workout = () => {
 
                     {/* Tips */}
                     <section className="plan-section">
-                        <h3 className="section-title">💡 Pro Tips</h3>
+                        <h3 className="section-title"><Lightbulb size={24} /> Pro Tips</h3>
                         <div className="tips-list">
                             {workoutPlan.tips.map((tip, index) => (
                                 <div key={index} className="tip-item">

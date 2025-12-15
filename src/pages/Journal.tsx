@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { BookOpen, Lightbulb, Moon, Droplets, Dumbbell, BarChart, PenTool, Book, Check, X, Trash2, ChevronLeft, Target, FileText, Smile, Meh, Frown, Laugh, CloudRain, Rocket } from 'lucide-react';
 import './Journal.css';
 
 interface JournalEntry {
@@ -48,11 +49,11 @@ const Journal = () => {
     }, [entries]);
 
     const moodOptions = [
-        { value: 'great', label: 'Great', icon: '😄', color: '#10b981' },
-        { value: 'good', label: 'Good', icon: '🙂', color: '#22c55e' },
-        { value: 'neutral', label: 'Neutral', icon: '😐', color: '#f59e0b' },
-        { value: 'bad', label: 'Bad', icon: '😔', color: '#f97316' },
-        { value: 'terrible', label: 'Terrible', icon: '😢', color: '#ef4444' },
+        { value: 'great', label: 'Great', icon: <Laugh size={24} />, color: '#10b981' },
+        { value: 'good', label: 'Good', icon: <Smile size={24} />, color: '#22c55e' },
+        { value: 'neutral', label: 'Neutral', icon: <Meh size={24} />, color: '#f59e0b' },
+        { value: 'bad', label: 'Bad', icon: <Frown size={24} />, color: '#f97316' },
+        { value: 'terrible', label: 'Terrible', icon: <CloudRain size={24} />, color: '#ef4444' },
     ];
 
     const analyzeWithAI = async (entry: JournalEntry): Promise<AIAnalysis> => {
@@ -116,7 +117,7 @@ const Journal = () => {
 
         // Analyze workout
         if (entry.workoutDone) {
-            positives.push('Great job completing your workout today! 💪');
+            positives.push('Great job completing your workout today!');
             score += 15;
         } else {
             improvements.push('Try to fit in a workout tomorrow, even if it\'s just a short one');
@@ -242,7 +243,7 @@ const Journal = () => {
     return (
         <div className="journal-page page-container">
             <header className="page-header">
-                <h1 className="page-title">📝 Daily Journal</h1>
+                <h1 className="page-title"><BookOpen size={32} /> Daily Journal</h1>
                 <p className="page-subtitle">Track your daily progress and get AI-powered insights to improve</p>
             </header>
 
@@ -264,7 +265,7 @@ const Journal = () => {
                             onChange={e => setApiKey(e.target.value)}
                         />
                         <p className="api-hint">
-                            💡 Without an API key, analysis is generated locally. Add your key for more personalized insights.
+                            <Lightbulb size={16} /> Without an API key, analysis is generated locally. Add your key for more personalized insights.
                         </p>
                     </div>
                 )}
@@ -273,28 +274,28 @@ const Journal = () => {
             {/* Weekly Stats */}
             <div className="weekly-stats">
                 <div className="stat-card">
-                    <span className="stat-icon">😴</span>
+                    <span className="stat-icon"><Moon size={24} /></span>
                     <div className="stat-info">
                         <span className="stat-number">{stats.avgSleep.toFixed(1)}h</span>
                         <span className="stat-text">Avg Sleep</span>
                     </div>
                 </div>
                 <div className="stat-card">
-                    <span className="stat-icon">💧</span>
+                    <span className="stat-icon"><Droplets size={24} /></span>
                     <div className="stat-info">
                         <span className="stat-number">{stats.avgWater.toFixed(1)}</span>
                         <span className="stat-text">Avg Water</span>
                     </div>
                 </div>
                 <div className="stat-card">
-                    <span className="stat-icon">🏋️</span>
+                    <span className="stat-icon"><Dumbbell size={24} /></span>
                     <div className="stat-info">
                         <span className="stat-number">{stats.workoutDays}/7</span>
                         <span className="stat-text">Workout Days</span>
                     </div>
                 </div>
                 <div className="stat-card">
-                    <span className="stat-icon">📊</span>
+                    <span className="stat-icon"><BarChart size={24} /></span>
                     <div className="stat-info">
                         <span className="stat-number" style={{ color: getScoreColor(stats.avgScore) }}>
                             {stats.avgScore.toFixed(0)}%
@@ -306,7 +307,7 @@ const Journal = () => {
 
             {/* New Entry Button */}
             <button className="btn btn-primary new-entry-btn" onClick={() => setShowForm(true)}>
-                <span>✏️</span> New Journal Entry
+                <PenTool size={20} /> New Journal Entry
             </button>
 
             {/* Content Grid */}
@@ -317,7 +318,7 @@ const Journal = () => {
                     <div className="entries-list">
                         {entries.length === 0 ? (
                             <div className="no-entries">
-                                <span className="no-entries-icon">📔</span>
+                                <span className="no-entries-icon"><Book size={48} /></span>
                                 <p>No journal entries yet. Start tracking your progress!</p>
                             </div>
                         ) : (
@@ -347,10 +348,10 @@ const Journal = () => {
                                         </p>
                                         <div className="entry-meta">
                                             <span className={`meta-item ${entry.workoutDone ? 'done' : ''}`}>
-                                                {entry.workoutDone ? '✅' : '❌'} Workout
+                                                {entry.workoutDone ? <Check size={14} /> : <X size={14} />} Workout
                                             </span>
-                                            <span className="meta-item">😴 {entry.sleepHours}h</span>
-                                            <span className="meta-item">💧 {entry.waterIntake}</span>
+                                            <span className="meta-item"><Moon size={14} /> {entry.sleepHours}h</span>
+                                            <span className="meta-item"><Droplets size={14} /> {entry.waterIntake}</span>
                                         </div>
                                         {entry.aiAnalysis && (
                                             <div className="entry-score" style={{ borderColor: getScoreColor(entry.aiAnalysis.overallScore) }}>
@@ -364,7 +365,7 @@ const Journal = () => {
                                                 deleteEntry(entry.id);
                                             }}
                                         >
-                                            🗑️
+                                            <Trash2 size={16} />
                                         </button>
                                     </div>
                                 );
@@ -378,7 +379,7 @@ const Journal = () => {
                     {selectedEntry ? (
                         <div className="analysis-content animate-fade-in">
                             <div className="analysis-header">
-                                <h3>📊 AI Analysis</h3>
+                                <h3><BarChart size={20} /> AI Analysis</h3>
                                 <span className="analysis-date">
                                     {new Date(selectedEntry.date).toLocaleDateString('en-US', {
                                         weekday: 'long',
@@ -404,14 +405,14 @@ const Journal = () => {
 
                                     {/* Summary */}
                                     <div className="analysis-block">
-                                        <h4>📝 Summary</h4>
+                                        <h4><FileText size={18} /> Summary</h4>
                                         <p>{selectedEntry.aiAnalysis.summary}</p>
                                     </div>
 
                                     {/* What went well */}
                                     {selectedEntry.aiAnalysis.positives.length > 0 && (
                                         <div className="analysis-block positives">
-                                            <h4>✅ What Went Well</h4>
+                                            <h4><Check size={18} /> What Went Well</h4>
                                             <ul>
                                                 {selectedEntry.aiAnalysis.positives.map((item, i) => (
                                                     <li key={i}>{item}</li>
@@ -423,7 +424,7 @@ const Journal = () => {
                                     {/* Areas to improve */}
                                     {selectedEntry.aiAnalysis.improvements.length > 0 && (
                                         <div className="analysis-block improvements">
-                                            <h4>🎯 Areas to Improve</h4>
+                                            <h4><Target size={18} /> Areas to Improve</h4>
                                             <ul>
                                                 {selectedEntry.aiAnalysis.improvements.map((item, i) => (
                                                     <li key={i}>{item}</li>
@@ -434,7 +435,7 @@ const Journal = () => {
 
                                     {/* Recommendations */}
                                     <div className="analysis-block recommendations">
-                                        <h4>💡 Recommendations</h4>
+                                        <h4><Lightbulb size={18} /> Recommendations</h4>
                                         <ul>
                                             {selectedEntry.aiAnalysis.recommendations.map((item, i) => (
                                                 <li key={i}>{item}</li>
@@ -446,13 +447,13 @@ const Journal = () => {
 
                             {/* Full Entry */}
                             <div className="full-entry">
-                                <h4>📖 Full Entry</h4>
+                                <h4><BookOpen size={18} /> Full Entry</h4>
                                 <p>{selectedEntry.content}</p>
                             </div>
                         </div>
                     ) : (
                         <div className="no-selection">
-                            <span className="no-selection-icon">👈</span>
+                            <span className="no-selection-icon"><ChevronLeft size={48} /></span>
                             <p>Select an entry to view AI analysis</p>
                         </div>
                     )}
@@ -464,8 +465,8 @@ const Journal = () => {
                 <div className="modal-overlay" onClick={() => setShowForm(false)}>
                     <div className="modal" onClick={e => e.stopPropagation()}>
                         <div className="modal-header">
-                            <h3>✏️ New Journal Entry</h3>
-                            <button className="modal-close" onClick={() => setShowForm(false)}>✕</button>
+                            <h3><PenTool size={20} /> New Journal Entry</h3>
+                            <button className="modal-close" onClick={() => setShowForm(false)}><X size={20} /></button>
                         </div>
                         <div className="modal-body">
                             <div className="form-group">
@@ -504,13 +505,13 @@ const Journal = () => {
                                             className={`toggle-btn ${formData.workoutDone ? 'active' : ''}`}
                                             onClick={() => setFormData({ ...formData, workoutDone: true })}
                                         >
-                                            ✅ Yes
+                                            <Check size={16} /> Yes
                                         </button>
                                         <button
                                             className={`toggle-btn ${!formData.workoutDone ? 'active' : ''}`}
                                             onClick={() => setFormData({ ...formData, workoutDone: false })}
                                         >
-                                            ❌ No
+                                            <X size={16} /> No
                                         </button>
                                     </div>
                                 </div>
@@ -552,7 +553,7 @@ const Journal = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <span>🚀</span>
+                                        <Rocket size={18} />
                                         Save & Analyze
                                     </>
                                 )}

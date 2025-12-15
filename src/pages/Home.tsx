@@ -1,24 +1,25 @@
 import { Link } from 'react-router-dom';
+import { Calendar, Dumbbell, BookOpen, Rocket, Activity, ArrowRight } from 'lucide-react';
 import './Home.css';
 
 const Home = () => {
     const features = [
         {
-            icon: '📅',
+            icon: <Calendar size={32} />,
             title: 'Smart Scheduling',
             description: 'Plan your workout days with our intuitive calendar. Set reminders and track your gym streak.',
             link: '/schedule',
             color: '#4361ee',
         },
         {
-            icon: '💪',
+            icon: <Dumbbell size={32} />,
             title: 'AI Workout Generator',
             description: 'Get personalized workout plans based on your BMI using advanced OpenAI technology.',
             link: '/workout',
             color: '#00ff88',
         },
         {
-            icon: '📝',
+            icon: <BookOpen size={32} />,
             title: 'AI Journal Analysis',
             description: 'Log your daily activities and let AI analyze patterns to help you improve.',
             link: '/journal',
@@ -47,16 +48,16 @@ const Home = () => {
                     </p>
                     <div className="hero-buttons animate-fade-in">
                         <Link to="/workout" className="btn btn-primary">
-                            <span>🚀</span> Get Started
+                            <Rocket size={20} /> Get Started
                         </Link>
                         <Link to="/schedule" className="btn btn-secondary">
-                            <span>📅</span> View Schedule
+                            <Calendar size={20} /> View Schedule
                         </Link>
                     </div>
                 </div>
                 <div className="hero-visual">
                     <div className="hero-card animate-pulse">
-                        <div className="hero-icon">🏋️</div>
+                        <div className="hero-icon"><Activity size={64} /></div>
                         <div className="hero-stats">
                             <span className="stat-value">+247%</span>
                             <span className="stat-label">Progress</span>
@@ -97,7 +98,7 @@ const Home = () => {
                             <h3 className="feature-title">{feature.title}</h3>
                             <p className="feature-description">{feature.description}</p>
                             <span className="feature-link">
-                                Explore <span className="arrow">→</span>
+                                Explore <ArrowRight size={16} />
                             </span>
                         </Link>
                     ))}
@@ -112,7 +113,7 @@ const Home = () => {
                         Join thousands of users who have transformed their lives with GymFlow
                     </p>
                     <Link to="/workout" className="btn btn-primary cta-button">
-                        <span>💪</span> Generate Your First Workout
+                        <Dumbbell size={20} /> Generate Your First Workout
                     </Link>
                 </div>
             </section>

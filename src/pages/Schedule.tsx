@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Calendar, Flame, CheckCircle, BarChart, ChevronLeft, ChevronRight, X, Check, HeartPulse, Dumbbell, Flower2, Bed, Zap } from 'lucide-react';
 import './Schedule.css';
 
 interface ScheduleItem {
@@ -35,11 +36,11 @@ const Schedule = () => {
     }, [schedules]);
 
     const workoutTypes = [
-        { value: 'cardio', label: 'Cardio', icon: '🏃', color: '#ef4444' },
-        { value: 'strength', label: 'Strength', icon: '💪', color: '#00ff88' },
-        { value: 'flexibility', label: 'Flexibility', icon: '🧘', color: '#8b5cf6' },
-        { value: 'rest', label: 'Rest Day', icon: '😴', color: '#6b7280' },
-        { value: 'hiit', label: 'HIIT', icon: '⚡', color: '#f59e0b' },
+        { value: 'cardio', label: 'Cardio', Icon: HeartPulse, color: '#ef4444' },
+        { value: 'strength', label: 'Strength', Icon: Dumbbell, color: '#00ff88' },
+        { value: 'flexibility', label: 'Flexibility', Icon: Flower2, color: '#8b5cf6' },
+        { value: 'rest', label: 'Rest Day', Icon: Bed, color: '#6b7280' },
+        { value: 'hiit', label: 'HIIT', Icon: Zap, color: '#f59e0b' },
     ];
 
     const getDaysInMonth = (date: Date) => {
@@ -134,28 +135,28 @@ const Schedule = () => {
     return (
         <div className="schedule-page page-container">
             <header className="page-header">
-                <h1 className="page-title">📅 Workout Schedule</h1>
+                <h1 className="page-title"><Calendar size={32} /> Workout Schedule</h1>
                 <p className="page-subtitle">Plan your gym days and track your fitness journey</p>
             </header>
 
             {/* Stats Cards */}
             <div className="schedule-stats">
                 <div className="stat-card">
-                    <span className="stat-icon">🔥</span>
+                    <span className="stat-icon"><Flame size={40} /></span>
                     <div className="stat-info">
                         <span className="stat-number">{summary.streak}</span>
                         <span className="stat-text">Day Streak</span>
                     </div>
                 </div>
                 <div className="stat-card">
-                    <span className="stat-icon">✅</span>
+                    <span className="stat-icon"><CheckCircle size={40} /></span>
                     <div className="stat-info">
                         <span className="stat-number">{summary.completed}/{summary.total}</span>
                         <span className="stat-text">Completed</span>
                     </div>
                 </div>
                 <div className="stat-card">
-                    <span className="stat-icon">📊</span>
+                    <span className="stat-icon"><BarChart size={40} /></span>
                     <div className="stat-info">
                         <span className="stat-number">
                             {summary.total > 0 ? Math.round((summary.completed / summary.total) * 100) : 0}%
@@ -169,11 +170,11 @@ const Schedule = () => {
             <div className="calendar-wrapper">
                 <div className="calendar-header">
                     <button className="btn btn-secondary" onClick={() => navigateMonth(-1)}>
-                        ← Prev
+                        <ChevronLeft size={20} /> Prev
                     </button>
                     <h2 className="calendar-month">{monthName}</h2>
                     <button className="btn btn-secondary" onClick={() => navigateMonth(1)}>
-                        Next →
+                        Next <ChevronRight size={20} />
                     </button>
                 </div>
 
@@ -210,7 +211,7 @@ const Schedule = () => {
                                                     style={{ backgroundColor: type?.color }}
                                                     title={schedule.title}
                                                 >
-                                                    {type?.icon}
+                                                    {type && <type.Icon size={12} />}
                                                 </span>
                                             );
                                         })}
@@ -235,7 +236,7 @@ const Schedule = () => {
                             return (
                                 <div key={schedule.id} className="workout-item">
                                     <div className="workout-icon" style={{ borderColor: type?.color }}>
-                                        {type?.icon}
+                                        {type && <type.Icon size={24} />}
                                     </div>
                                     <div className="workout-details">
                                         <h4>{schedule.title}</h4>
@@ -248,14 +249,14 @@ const Schedule = () => {
                                             onClick={() => toggleComplete(schedule.id)}
                                             title="Mark as complete"
                                         >
-                                            ✓
+                                            <Check size={16} />
                                         </button>
                                         <button
                                             className="btn-icon delete"
                                             onClick={() => deleteSchedule(schedule.id)}
                                             title="Delete"
                                         >
-                                            ✕
+                                            <X size={16} />
                                         </button>
                                     </div>
                                 </div>
@@ -273,11 +274,11 @@ const Schedule = () => {
                     <div className="modal" onClick={e => e.stopPropagation()}>
                         <div className="modal-header">
                             <h3>Add Workout</h3>
-                            <button className="modal-close" onClick={() => setShowModal(false)}>✕</button>
+                            <button className="modal-close" onClick={() => setShowModal(false)}><X size={20} /></button>
                         </div>
                         <div className="modal-body">
                             <p className="modal-date">
-                                📅 {selectedDate && new Date(selectedDate).toLocaleDateString('en-US', {
+                                <Calendar size={16} /> {selectedDate && new Date(selectedDate).toLocaleDateString('en-US', {
                                     weekday: 'long',
                                     year: 'numeric',
                                     month: 'long',
@@ -295,7 +296,7 @@ const Schedule = () => {
                                             style={{ '--type-color': type.color } as React.CSSProperties}
                                             onClick={() => setFormData({ ...formData, type: type.value as ScheduleItem['type'] })}
                                         >
-                                            <span>{type.icon}</span>
+                                            <span><type.Icon size={24} /></span>
                                             <span>{type.label}</span>
                                         </button>
                                     ))}

@@ -2,6 +2,20 @@ import { useState, useRef, useEffect, type ReactNode } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
+import {
+    Home,
+    Calendar,
+    Dumbbell,
+    BookOpen,
+    Clock,
+    Activity,
+    Moon,
+    Sun,
+    User,
+    LogOut,
+    ChevronUp,
+    ChevronDown
+} from 'lucide-react';
 import './Layout.css';
 
 interface LayoutProps {
@@ -17,11 +31,11 @@ const Layout = ({ children }: LayoutProps) => {
     const userMenuRef = useRef<HTMLDivElement>(null);
 
     const navItems = [
-        { path: '/', label: 'Home', icon: '🏠' },
-        { path: '/schedule', label: 'Schedule', icon: '📅' },
-        { path: '/workout', label: 'Workout AI', icon: '💪' },
-        { path: '/journal', label: 'Journal', icon: '📝' },
-        { path: '/saved-workouts', label: 'History', icon: '📂' },
+        { path: '/', label: 'Home', icon: <Home size={20} /> },
+        { path: '/schedule', label: 'Schedule', icon: <Calendar size={20} /> },
+        { path: '/workout', label: 'Workout AI', icon: <Dumbbell size={20} /> },
+        { path: '/journal', label: 'Journal', icon: <BookOpen size={20} /> },
+        { path: '/saved-workouts', label: 'History', icon: <Clock size={20} /> },
     ];
 
     // Close menu when clicking outside
@@ -58,7 +72,7 @@ const Layout = ({ children }: LayoutProps) => {
             <nav className="navbar">
                 <div className="nav-container">
                     <Link to="/" className="nav-brand">
-                        <span className="brand-icon">🏋️</span>
+                        <span className="brand-icon"><Activity size={28} /></span>
                         <span className="brand-text">GymFlow</span>
                     </Link>
 
@@ -82,7 +96,7 @@ const Layout = ({ children }: LayoutProps) => {
                             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                         >
                             <span className="theme-icon">
-                                {theme === 'light' ? '🌙' : '☀️'}
+                                {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
                             </span>
                             <span className="theme-label">
                                 {theme === 'light' ? 'Dark' : 'Light'}
@@ -100,7 +114,9 @@ const Layout = ({ children }: LayoutProps) => {
                                         {getUserInitials()}
                                     </div>
                                     <span className="user-email">{user.email}</span>
-                                    <span className="dropdown-arrow">{showUserMenu ? '▲' : '▼'}</span>
+                                    <span className="dropdown-arrow">
+                                        {showUserMenu ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                                    </span>
                                 </button>
 
                                 {showUserMenu && (
@@ -117,20 +133,20 @@ const Layout = ({ children }: LayoutProps) => {
                                             className="user-menu-item"
                                             onClick={() => setShowUserMenu(false)}
                                         >
-                                            <span>📂</span> Saved Workouts
+                                            <Clock size={16} /> Saved Workouts
                                         </Link>
                                         <button
                                             className="user-menu-item danger"
                                             onClick={handleSignOut}
                                         >
-                                            <span>🚪</span> Sign Out
+                                            <LogOut size={16} /> Sign Out
                                         </button>
                                     </div>
                                 )}
                             </div>
                         ) : (
                             <Link to="/login" className="auth-link">
-                                <span className="auth-icon">👤</span>
+                                <span className="auth-icon"><User size={20} /></span>
                                 <span className="auth-label">Sign In</span>
                             </Link>
                         )}

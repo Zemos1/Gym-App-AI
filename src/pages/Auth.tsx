@@ -1,6 +1,7 @@
 import { useState, type FormEvent } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Activity, AlertTriangle, CheckCircle, User, Mail, Lock, ShieldCheck, Eye, EyeOff, Rocket, Sparkles, Key, ArrowLeft } from 'lucide-react';
 import './Auth.css';
 
 type AuthMode = 'login' | 'signup' | 'forgot-password' | 'reset-password';
@@ -155,21 +156,21 @@ const Auth = () => {
             <div className="auth-container">
                 <div className="auth-card">
                     <header className="auth-header">
-                        <span className="auth-logo">🏋️</span>
+                        <span className="auth-logo"><Activity size={48} /></span>
                         <h1 className="auth-title">{renderTitle()}</h1>
                         <p className="auth-subtitle">{renderSubtitle()}</p>
                     </header>
 
                     {error && (
                         <div className="auth-error">
-                            <span className="auth-error-icon">⚠️</span>
+                            <span className="auth-error-icon"><AlertTriangle size={20} /></span>
                             <p className="auth-error-message">{error}</p>
                         </div>
                     )}
 
                     {success && (
                         <div className="auth-success">
-                            <span className="auth-success-icon">✅</span>
+                            <span className="auth-success-icon"><CheckCircle size={20} /></span>
                             <p className="auth-success-message">{success}</p>
                         </div>
                     )}
@@ -178,7 +179,7 @@ const Auth = () => {
                         {mode === 'signup' && (
                             <div className="form-group">
                                 <label className="label">
-                                    <span className="label-icon">👤</span>
+                                    <span className="label-icon"><User size={16} /></span>
                                     Full Name (optional)
                                 </label>
                                 <input
@@ -194,7 +195,7 @@ const Auth = () => {
                         {mode !== 'reset-password' && (
                             <div className="form-group">
                                 <label className="label">
-                                    <span className="label-icon">📧</span>
+                                    <span className="label-icon"><Mail size={16} /></span>
                                     Email Address
                                 </label>
                                 <input
@@ -211,7 +212,7 @@ const Auth = () => {
                         {(mode === 'login' || mode === 'signup' || mode === 'reset-password') && (
                             <div className="form-group">
                                 <label className="label">
-                                    <span className="label-icon">🔒</span>
+                                    <span className="label-icon"><Lock size={16} /></span>
                                     {mode === 'reset-password' ? 'New Password' : 'Password'}
                                 </label>
                                 <div className="password-field">
@@ -229,7 +230,7 @@ const Auth = () => {
                                         onClick={() => setShowPassword(!showPassword)}
                                         aria-label={showPassword ? 'Hide password' : 'Show password'}
                                     >
-                                        {showPassword ? '🙈' : '👁️'}
+                                        {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                     </button>
                                 </div>
                             </div>
@@ -238,7 +239,7 @@ const Auth = () => {
                         {(mode === 'signup' || mode === 'reset-password') && (
                             <div className="form-group">
                                 <label className="label">
-                                    <span className="label-icon">🔐</span>
+                                    <span className="label-icon"><ShieldCheck size={16} /></span>
                                     Confirm Password
                                 </label>
                                 <input
@@ -276,10 +277,10 @@ const Auth = () => {
                             ) : (
                                 <>
                                     <span>
-                                        {mode === 'login' ? '🚀' :
-                                            mode === 'signup' ? '✨' :
-                                                mode === 'forgot-password' ? '📧' :
-                                                    '🔑'}
+                                        {mode === 'login' ? <Rocket size={18} /> :
+                                            mode === 'signup' ? <Sparkles size={18} /> :
+                                                mode === 'forgot-password' ? <Mail size={18} /> :
+                                                    <Key size={18} />}
                                     </span>
                                     {mode === 'login' ? 'Sign In' :
                                         mode === 'signup' ? 'Create Account' :
@@ -315,7 +316,7 @@ const Auth = () => {
                     {(mode === 'forgot-password' || mode === 'reset-password') && (
                         <div className="back-to-login">
                             <Link to="/login" onClick={() => { setMode('login'); setError(''); setSuccess(''); }}>
-                                ← Back to login
+                                <ArrowLeft size={14} /> Back to login
                             </Link>
                         </div>
                     )}
