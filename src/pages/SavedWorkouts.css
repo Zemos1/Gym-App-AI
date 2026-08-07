@@ -1,17 +1,17 @@
-/* Saved Workouts Page Styles */
+/* Saved Workouts Page */
 .saved-workouts-page .workouts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 24px;
-    margin-top: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
 }
 
 .saved-workout-card {
     background: var(--bg-card);
     border: var(--card-border);
-    border-radius: 16px;
-    padding: 24px;
-    transition: all 0.3s ease;
+    border-radius: 14px;
+    padding: 20px;
+    transition: all var(--transition-base);
     position: relative;
     overflow: hidden;
 }
@@ -22,41 +22,33 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
+    height: 3px;
     background: var(--accent-gradient);
 }
 
-[data-theme="dark"] .saved-workout-card::before {
-    background: var(--accent-primary);
-    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
-}
-
 .saved-workout-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px var(--shadow-color);
-}
-
-[data-theme="dark"] .saved-workout-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
     border-color: var(--accent-primary);
-    box-shadow: 0 0 40px rgba(0, 255, 136, 0.15);
 }
 
 .saved-workout-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .saved-workout-title {
-    font-size: 1.25rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: var(--text-primary);
     margin: 0 0 4px 0;
+    letter-spacing: -0.01em;
 }
 
 .saved-workout-date {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-muted);
     display: flex;
     align-items: center;
@@ -65,25 +57,24 @@
 
 .saved-workout-actions {
     display: flex;
-    gap: 8px;
+    gap: 6px;
 }
 
 .saved-workout-btn {
-    background: var(--bg-tertiary);
+    background: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    color: var(--text-secondary);
-    padding: 8px 12px;
-    border-radius: 8px;
+    color: var(--text-muted);
+    padding: 6px 10px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     display: flex;
     align-items: center;
-    gap: 6px;
-    transition: all 0.2s ease;
+    gap: 4px;
+    transition: all var(--transition-fast);
 }
 
 .saved-workout-btn:hover {
-    background: var(--bg-secondary);
     border-color: var(--accent-primary);
     color: var(--accent-primary);
 }
@@ -91,50 +82,48 @@
 .saved-workout-btn.delete:hover {
     border-color: var(--error);
     color: var(--error);
-    background: rgba(239, 68, 68, 0.1);
+    background: var(--error-bg);
 }
 
 .saved-workout-meta {
     display: flex;
-    gap: 16px;
+    gap: 8px;
     flex-wrap: wrap;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .saved-workout-tag {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    background: var(--bg-tertiary);
-    border-radius: 20px;
-    font-size: 0.8rem;
+    gap: 4px;
+    padding: 4px 10px;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    font-size: 0.7rem;
     color: var(--text-secondary);
+    font-weight: 500;
 }
 
 .saved-workout-tag.goal-lose {
-    background: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
-    border: 1px solid #ef4444;
+    background: var(--error-bg);
+    color: var(--error);
 }
 
 .saved-workout-tag.goal-maintain {
     background: rgba(59, 130, 246, 0.1);
     color: #3b82f6;
-    border: 1px solid #3b82f6;
 }
 
 .saved-workout-tag.goal-gain {
-    background: rgba(16, 185, 129, 0.1);
-    color: #10b981;
-    border: 1px solid #10b981;
+    background: var(--success-bg);
+    color: var(--success);
 }
 
 .saved-workout-description {
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     line-height: 1.6;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
@@ -145,85 +134,87 @@
 .saved-workout-exercises {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
 }
 
 .exercise-mini-tag {
     background: var(--bg-secondary);
     border: 1px solid var(--border-color);
-    padding: 4px 10px;
-    border-radius: 12px;
-    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
     color: var(--text-muted);
 }
 
 /* Empty State */
 .empty-state {
     text-align: center;
-    padding: 60px 20px;
+    padding: 56px 20px;
     background: var(--bg-card);
     border: var(--card-border);
-    border-radius: 16px;
-    margin-top: 24px;
+    border-radius: 14px;
+    margin-top: 20px;
 }
 
 .empty-state-icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     display: block;
-    opacity: 0.6;
+    color: var(--text-muted);
 }
 
 .empty-state-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 .empty-state-text {
     color: var(--text-secondary);
-    margin-bottom: 24px;
+    margin-bottom: 20px;
+    font-size: 0.9rem;
 }
 
 .empty-state .btn {
     display: inline-flex;
 }
 
-/* Not Logged In State */
+/* Auth Prompt */
 .auth-prompt {
     text-align: center;
-    padding: 80px 20px;
+    padding: 64px 20px;
     background: var(--bg-card);
     border: var(--card-border);
-    border-radius: 16px;
-    margin-top: 24px;
+    border-radius: 14px;
+    margin-top: 20px;
 }
 
 .auth-prompt-icon {
-    font-size: 4rem;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     display: block;
+    color: var(--text-muted);
 }
 
 .auth-prompt-title {
-    font-size: 1.75rem;
+    font-size: 1.4rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 
 .auth-prompt-text {
     color: var(--text-secondary);
-    margin-bottom: 32px;
-    max-width: 400px;
+    margin-bottom: 24px;
+    max-width: 380px;
     margin-left: auto;
     margin-right: auto;
+    font-size: 0.9rem;
+    line-height: 1.6;
 }
 
 .auth-prompt-buttons {
     display: flex;
-    gap: 16px;
+    gap: 10px;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -231,40 +222,28 @@
 /* Loading State */
 .loading-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 24px;
-    margin-top: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
 }
 
 .skeleton-card {
     background: var(--bg-card);
     border: var(--card-border);
-    border-radius: 16px;
-    padding: 24px;
-    animation: skeletonPulse 1.5s ease-in-out infinite;
-}
-
-@keyframes skeletonPulse {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.5;
-    }
+    border-radius: 14px;
+    padding: 20px;
+    animation: pulse 1.5s ease-in-out infinite;
 }
 
 .skeleton-line {
     background: var(--bg-tertiary);
     border-radius: 4px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .skeleton-line.title {
-    height: 24px;
-    width: 70%;
+    height: 20px;
+    width: 65%;
 }
 
 .skeleton-line.date {
@@ -273,52 +252,34 @@
 }
 
 .skeleton-line.description {
-    height: 16px;
-    width: 100%;
+    height: 14px;
+    width: 90%;
 }
 
 .skeleton-line.description.short {
-    width: 80%;
+    width: 60%;
 }
 
 .skeleton-tags {
     display: flex;
-    gap: 12px;
-    margin-top: 16px;
+    gap: 8px;
+    margin-top: 12px;
 }
 
 .skeleton-tag {
+    width: 60px;
+    height: 22px;
     background: var(--bg-tertiary);
-    border-radius: 20px;
-    height: 28px;
-    width: 80px;
+    border-radius: 4px;
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
     .saved-workouts-page .workouts-grid {
         grid-template-columns: 1fr;
     }
 
-    .saved-workout-header {
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .saved-workout-actions {
-        width: 100%;
-    }
-
-    .saved-workout-btn {
-        flex: 1;
-        justify-content: center;
-    }
-
-    .auth-prompt-buttons {
-        flex-direction: column;
-    }
-
-    .auth-prompt-buttons .btn {
-        width: 100%;
+    .loading-grid {
+        grid-template-columns: 1fr;
     }
 }

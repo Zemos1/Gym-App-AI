@@ -31,14 +31,13 @@ const Layout = ({ children }: LayoutProps) => {
     const userMenuRef = useRef<HTMLDivElement>(null);
 
     const navItems = [
-        { path: '/', label: 'Home', icon: <Home size={20} /> },
-        { path: '/schedule', label: 'Schedule', icon: <Calendar size={20} /> },
-        { path: '/workout', label: 'Workout AI', icon: <Dumbbell size={20} /> },
-        { path: '/journal', label: 'Journal', icon: <BookOpen size={20} /> },
-        { path: '/saved-workouts', label: 'History', icon: <Clock size={20} /> },
+        { path: '/', label: 'Home', icon: <Home size={18} /> },
+        { path: '/schedule', label: 'Schedule', icon: <Calendar size={18} /> },
+        { path: '/workout', label: 'Workout', icon: <Dumbbell size={18} /> },
+        { path: '/journal', label: 'Journal', icon: <BookOpen size={18} /> },
+        { path: '/saved-workouts', label: 'Saved', icon: <Clock size={18} /> },
     ];
 
-    // Close menu when clicking outside
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
@@ -72,7 +71,7 @@ const Layout = ({ children }: LayoutProps) => {
             <nav className="navbar">
                 <div className="nav-container">
                     <Link to="/" className="nav-brand">
-                        <span className="brand-icon"><Activity size={28} /></span>
+                        <span className="brand-icon"><Activity size={22} /></span>
                         <span className="brand-text">GymFlow</span>
                     </Link>
 
@@ -96,10 +95,7 @@ const Layout = ({ children }: LayoutProps) => {
                             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                         >
                             <span className="theme-icon">
-                                {theme === 'light' ? <Moon size={20} /> : <Sun size={20} />}
-                            </span>
-                            <span className="theme-label">
-                                {theme === 'light' ? 'Dark' : 'Light'}
+                                {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
                             </span>
                         </button>
 
@@ -115,7 +111,7 @@ const Layout = ({ children }: LayoutProps) => {
                                     </div>
                                     <span className="user-email">{user.email}</span>
                                     <span className="dropdown-arrow">
-                                        {showUserMenu ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
+                                        {showUserMenu ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
                                     </span>
                                 </button>
 
@@ -133,20 +129,20 @@ const Layout = ({ children }: LayoutProps) => {
                                             className="user-menu-item"
                                             onClick={() => setShowUserMenu(false)}
                                         >
-                                            <Clock size={16} /> Saved Workouts
+                                            <Clock size={14} /> Saved Workouts
                                         </Link>
                                         <button
                                             className="user-menu-item danger"
                                             onClick={handleSignOut}
                                         >
-                                            <LogOut size={16} /> Sign Out
+                                            <LogOut size={14} /> Sign Out
                                         </button>
                                     </div>
                                 )}
                             </div>
                         ) : (
                             <Link to="/login" className="auth-link">
-                                <span className="auth-icon"><User size={20} /></span>
+                                <span className="auth-icon"><User size={16} /></span>
                                 <span className="auth-label">Sign In</span>
                             </Link>
                         )}
@@ -159,7 +155,7 @@ const Layout = ({ children }: LayoutProps) => {
             </main>
 
             <footer className="footer">
-                <p>© 2024 GymFlow - Your AI-Powered Fitness Companion</p>
+                <p>&copy; {new Date().getFullYear()} GymFlow &middot; Your Fitness Companion</p>
             </footer>
         </div>
     );
