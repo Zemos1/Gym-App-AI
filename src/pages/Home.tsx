@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Calendar, Dumbbell, BookOpen, Rocket, Activity, ArrowRight, Zap } from 'lucide-react';
+import { Calendar, Dumbbell, BookOpen, Rocket, Activity, ArrowRight, Zap, Target, Droplets, Moon, Flame } from 'lucide-react';
 import './Home.css';
 
 const Home = () => {
@@ -24,11 +24,11 @@ const Home = () => {
         },
     ];
 
-    const stats = [
-        { value: '1M+', label: 'Active Users' },
-        { value: '50K+', label: 'Plans Generated' },
-        { value: '98%', label: 'Satisfaction' },
-        { value: '24/7', label: 'Available' },
+    const capabilities = [
+        { icon: <Target size={18} />, value: 'BMI-Based', label: 'Workout Plans' },
+        { icon: <Flame size={18} />, value: '3 Goals', label: 'Lose · Maintain · Gain' },
+        { icon: <Moon size={18} />, value: 'Sleep & Mood', label: 'Daily Tracking' },
+        { icon: <Droplets size={18} />, value: 'Hydration', label: 'Water Intake Log' },
     ];
 
     return (
@@ -67,13 +67,14 @@ const Home = () => {
                 </div>
             </section>
 
-            {/* Stats Section */}
+            {/* Capabilities Section */}
             <section className="stats-section">
                 <div className="stats-grid">
-                    {stats.map((stat, index) => (
+                    {capabilities.map((item, index) => (
                         <div key={index} className="stat-card animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
-                            <span className="stat-value">{stat.value}</span>
-                            <span className="stat-label">{stat.label}</span>
+                            <span className="stat-icon-inline">{item.icon}</span>
+                            <span className="stat-value">{item.value}</span>
+                            <span className="stat-label">{item.label}</span>
                         </div>
                     ))}
                 </div>
@@ -111,7 +112,7 @@ const Home = () => {
                 <div className="cta-content">
                     <h2 className="cta-title">Ready to Start?</h2>
                     <p className="cta-subtitle">
-                        Join thousands who have transformed their fitness routine with GymFlow
+                        Calculate your BMI, pick your goal, and get a full workout plan in seconds
                     </p>
                     <Link to="/workout" className="btn btn-primary cta-button">
                         <Dumbbell size={18} /> Generate Your Workout

@@ -152,19 +152,27 @@
     transform: translateY(-2px);
 }
 
+.stat-icon-inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-primary);
+    margin-bottom: 6px;
+}
+
 .stat-card .stat-value {
     display: block;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     font-weight: 800;
-    color: var(--accent-primary);
-    margin-bottom: 4px;
-    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+    letter-spacing: -0.02em;
 }
 
 .stat-card .stat-label {
     color: var(--text-muted);
     font-weight: 500;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
 }
 
 /* Features Section */
