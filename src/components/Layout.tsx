@@ -14,7 +14,9 @@ import {
     User,
     LogOut,
     ChevronUp,
-    ChevronDown
+    ChevronDown,
+    Menu,
+    X
 } from 'lucide-react';
 import './Layout.css';
 
@@ -28,7 +30,9 @@ const Layout = ({ children }: LayoutProps) => {
     const location = useLocation();
     const navigate = useNavigate();
     const [showUserMenu, setShowUserMenu] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const userMenuRef = useRef<HTMLDivElement>(null);
+    const mobileMenuRef = useRef<HTMLDivElement>(null);
 
     const navItems = [
         { path: '/', label: 'Home', icon: <Home size={18} /> },
@@ -38,10 +42,22 @@ const Layout = ({ children }: LayoutProps) => {
         { path: '/saved-workouts', label: 'Saved', icon: <Clock size={18} /> },
     ];
 
+    // Close menus on route change
+    useEffect(() => {
+        setMobileMenuOpen(false);
+        setShowUserMenu(false);
+    }, [location.pathname]);
+
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
                 setShowUserMenu(false);
+            }
+            if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+                const target = event.target as HTMLElement;
+                if (!target.closest('.hamburger-btn')) {
+                    setMobileMenuOpen(false);
+                }
             }
         };
 
@@ -49,9 +65,20 @@ const Layout = ({ children }: LayoutProps) => {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
+    // Prevent body scroll when mobile menu is open
+    useEffect(() => {
+        if (mobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => { document.body.style.overflow = ''; };
+    }, [mobileMenuOpen]);
+
     const handleSignOut = async () => {
         await signOut();
         setShowUserMenu(false);
+        setMobileMenuOpen(false);
         navigate('/');
     };
 
@@ -68,14 +95,16 @@ const Layout = ({ children }: LayoutProps) => {
 
     return (
         <div className="layout">
-            <nav className="navbar">
+            <nav className="navbar" role="navigation" aria-label="Main navigation">
                 <div className="nav-container">
-                    <Link to="/" className="nav-brand">
+                    {/* Logo / Brand */}
+                    <Link to="/" className="nav-brand" aria-label="GymFlow Home">
                         <span className="brand-icon"><Activity size={22} /></span>
                         <span className="brand-text">GymFlow</span>
                     </Link>
 
-                    <div className="nav-links">
+                    {/* Desktop Nav Links */}
+                    <div className="nav-links-desktop">
                         {navItems.map(item => (
                             <Link
                                 key={item.path}
@@ -88,11 +117,13 @@ const Layout = ({ children }: LayoutProps) => {
                         ))}
                     </div>
 
+                    {/* Right Actions */}
                     <div className="nav-actions">
                         <button
                             className="theme-toggle"
                             onClick={toggleTheme}
                             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+                            title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
                         >
                             <span className="theme-icon">
                                 {theme === 'light' ? <Moon size={16} /> : <Sun size={16} />}
@@ -105,6 +136,7 @@ const Layout = ({ children }: LayoutProps) => {
                                     className="user-menu-trigger"
                                     onClick={() => setShowUserMenu(!showUserMenu)}
                                     aria-expanded={showUserMenu}
+                                    aria-label="User menu"
                                 >
                                     <div className="user-avatar">
                                         {getUserInitials()}
@@ -146,8 +178,66 @@ const Layout = ({ children }: LayoutProps) => {
                                 <span className="auth-label">Sign In</span>
                             </Link>
                         )}
+
+                        {/* Hamburger - Tablet only */}
+                        <button
+                            className="hamburger-btn"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                            aria-expanded={mobileMenuOpen}
+                        >
+                            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                        </button>
                     </div>
                 </div>
+
+                {/* Tablet Slide-down Menu */}
+                {mobileMenuOpen && (
+                    <>
+                        <div className="mobile-menu-overlay" onClick={() => setMobileMenuOpen(false)} />
+                        <div className="mobile-menu" ref={mobileMenuRef}>
+                            <div className="mobile-menu-links">
+                                {navItems.map(item => (
+                                    <Link
+                                        key={item.path}
+                                        to={item.path}
+                                        className={`mobile-menu-link ${location.pathname === item.path ? 'active' : ''}`}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                    >
+                                        <span className="mobile-menu-icon">{item.icon}</span>
+                                        <span className="mobile-menu-label">{item.label}</span>
+                                    </Link>
+                                ))}
+                            </div>
+                            {user && (
+                                <div className="mobile-menu-footer">
+                                    <div className="mobile-menu-divider"></div>
+                                    <button
+                                        className="mobile-menu-link danger"
+                                        onClick={handleSignOut}
+                                    >
+                                        <LogOut size={18} />
+                                        <span>Sign Out</span>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    </>
+                )}
+            </nav>
+
+            {/* Mobile Bottom Tab Bar */}
+            <nav className="bottom-tab-bar" aria-label="Mobile navigation">
+                {navItems.map(item => (
+                    <Link
+                        key={item.path}
+                        to={item.path}
+                        className={`tab-item ${location.pathname === item.path ? 'active' : ''}`}
+                    >
+                        <span className="tab-icon">{item.icon}</span>
+                        <span className="tab-label">{item.label}</span>
+                    </Link>
+                ))}
             </nav>
 
             <main className="main-content">
