@@ -38,8 +38,7 @@ const Workout = () => {
     const [bmi, setBmi] = useState<number | null>(null);
     const [loading, setLoading] = useState(false);
     const [workoutPlan, setWorkoutPlan] = useState<WorkoutPlan | null>(null);
-    const [apiKey, setApiKey] = useState(import.meta.env.VITE_OPENAI_API_KEY || '');
-    const [showApiInput, setShowApiInput] = useState(false);
+    const apiKey = import.meta.env.VITE_OPENAI_API_KEY || '';
     const [saving, setSaving] = useState(false);
     const [saved, setSaved] = useState(false);
 
@@ -280,30 +279,6 @@ const Workout = () => {
                 <h1 className="page-title"><Dumbbell size={32} /> AI Workout Generator</h1>
                 <p className="page-subtitle">Generate personalized workout plans based on your BMI and fitness goals</p>
             </header>
-
-            {/* API Key Toggle */}
-            <div className="api-section">
-                <button
-                    className="btn btn-secondary"
-                    onClick={() => setShowApiInput(!showApiInput)}
-                >
-                    {showApiInput ? 'Hide' : 'Show'} OpenAI Settings
-                </button>
-                {showApiInput && (
-                    <div className="api-input-wrapper">
-                        <input
-                            type="password"
-                            className="input-field"
-                            placeholder="Enter your OpenAI API key (optional)"
-                            value={apiKey}
-                            onChange={e => setApiKey(e.target.value)}
-                        />
-                        <p className="api-hint">
-                            <Lightbulb size={16} /> Without an API key, workouts are generated locally. Add your key for AI-powered personalization.
-                        </p>
-                    </div>
-                )}
-            </div>
 
             {/* Calculator Section */}
             <div className="calculator-section">

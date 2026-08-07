@@ -26,8 +26,7 @@ const Journal = () => {
     const [showForm, setShowForm] = useState(false);
     const [selectedEntry, setSelectedEntry] = useState<JournalEntry | null>(null);
     const [loading, setLoading] = useState(false);
-    const [apiKey, setApiKey] = useState(import.meta.env.VITE_OPENAI_API_KEY || '');
-    const [showApiInput, setShowApiInput] = useState(false);
+    const apiKey = import.meta.env.VITE_OPENAI_API_KEY || '';
 
     const [formData, setFormData] = useState({
         content: '',
@@ -246,30 +245,6 @@ const Journal = () => {
                 <h1 className="page-title"><BookOpen size={32} /> Daily Journal</h1>
                 <p className="page-subtitle">Track your daily progress and get AI-powered insights to improve</p>
             </header>
-
-            {/* API Key Toggle */}
-            <div className="api-section">
-                <button
-                    className="btn btn-secondary"
-                    onClick={() => setShowApiInput(!showApiInput)}
-                >
-                    {showApiInput ? 'Hide' : 'Show'} OpenAI Settings
-                </button>
-                {showApiInput && (
-                    <div className="api-input-wrapper">
-                        <input
-                            type="password"
-                            className="input-field"
-                            placeholder="Enter your OpenAI API key (optional)"
-                            value={apiKey}
-                            onChange={e => setApiKey(e.target.value)}
-                        />
-                        <p className="api-hint">
-                            <Lightbulb size={16} /> Without an API key, analysis is generated locally. Add your key for more personalized insights.
-                        </p>
-                    </div>
-                )}
-            </div>
 
             {/* Weekly Stats */}
             <div className="weekly-stats">
